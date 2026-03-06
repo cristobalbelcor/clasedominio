@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Individuos</title>
+</head>
+<body>
+    <h1>Lista de Individuos</h1>
+
+    <form th:action="@{/}" method="get">
+        <input type="text" name="q" th:value="${q}">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <br>
+
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Correo</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="ind : ${lista}">
+                <td th:text="${ind.nombre}"></td>
+                <td th:text="${ind.apellido}"></td>
+                <td th:text="${ind.edad}"></td>
+                <td th:text="${ind.correo}"></td>
+                <td>
+                    <a th:href="@{/detalle(nombre=${ind.nombre}, apellido=${ind.apellido}, edad=${ind.edad}, correo=${ind.correo})}">Ver</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <form th:action="@{/}" method="get">
+        <button type="submit">Recargar lista</button>
+    </form>
+</body>
+</html>

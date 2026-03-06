@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Individuo</title>
+</head>
+<body>
+    <h1>Detalle del Individuo</h1>
+    <p><b>Nombre:</b> <span th:text="${individuo.nombre}"></span></p>
+    <p><b>Apellido:</b> <span th:text="${individuo.apellido}"></span></p>
+    <p><b>Edad:</b> <span th:text="${individuo.edad}"></span></p>
+    <p><b>Correo:</b> <span th:text="${individuo.correo}"></span></p>
+
+    <hr>
+    <a th:href="@{/}">Volver a la lista</a>
+
+</body>
+</html>
