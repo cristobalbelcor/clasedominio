@@ -1,6 +1,9 @@
 package com.dominio.domain;
 import lombok.Data;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 
 @Data
 @Entity
@@ -13,8 +16,14 @@ public class Individuo {
     @Column(name = "id_individuos")
     private Integer idIndividuo;
 
+    @NotEmpty
     private String nombre;
+        @NotEmpty
     private String apellido;
-    private int edad;
+        @NotNull
+    private Integer edad;
+        @NotEmpty
     private String correo;
+        @NotEmpty
+    private String telefono;
 }

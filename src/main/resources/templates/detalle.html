@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Detalle del Individuo</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
-    <h1>Detalle del Individuo</h1>
-    <p><b>Nombre:</b> <span th:text="${individuo.nombre}"></span></p>
-    <p><b>Apellido:</b> <span th:text="${individuo.apellido}"></span></p>
-    <p><b>Edad:</b> <span th:text="${individuo.edad}"></span></p>
-    <p><b>Correo:</b> <span th:text="${individuo.correo}"></span></p>
+    <div class="container">
+        <h1>Detalle del Individuo</h1>
+        <div class="card">
+            <p><b>Nombre:</b> <span th:text="${individuo.nombre}"></span></p>
+            <p><b>Apellido:</b> <span th:text="${individuo.apellido}"></span></p>
+            <p><b>Edad:</b> <span th:text="${individuo.edad}"></span></p>
+            <p><b>Correo:</b> <span th:text="${individuo.correo}"></span></p>
+            <p><b>Telefono:</b> <span th:text="${individuo.telefono}"></span></p>
+        </div>
 
-    <hr>
-    <a th:href="@{/}">Volver a la lista</a>
-
+        <div class="footer-actions">
+            <a th:href="@{/}" class="btn">Volver a la lista</a>
+        </div>
+    </div>
 </body>
 </html>

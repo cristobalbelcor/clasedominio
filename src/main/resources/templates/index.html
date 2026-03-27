@@ -3,45 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Individuos</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
-    <h1>Lista de Individuos</h1>
-
-    <br>
-
-    <form th:action="@{/}" method="get">
-        <input type="text" name="q" th:value="${q}">
-        <button type="submit">Buscar</button>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-logout">cerrar sesion</button>
     </form>
+    <div class="container">
+        <h1>Lista de Individuos</h1>
 
-    <br>
+        <div class="actions">
+            <a th:if="${esAdmin}" th:href="@{/nuevo}" class="btn">Nuevo Individuo</a>
+            <p><strong>Usuario: </strong><span th:text="${usuarioActual}"></span></p>
+            <p><strong>Roles: </strong><span th:text="${rolesActuales}"></span></p>
+            <p><strong>Es Admin: </strong><span th:text="${esAdmin}"></span></p>
+        </div>
 
-    <table border="1" cellpadding="8">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Edad</th>
-                <th>Correo</th>
-                <th>Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="ind : ${lista}">
-                <td th:text="${ind.nombre}"></td>
-                <td th:text="${ind.apellido}"></td>
-                <td th:text="${ind.edad}"></td>
-                <td th:text="${ind.correo}"></td>
-                <td>
-                    <a th:href="@{/detalle(id=${ind.idIndividuo})}">Ver</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <form class="toolbar" th:action="@{/}" method="get">
+            <input type="text" name="q" th:value="${q}" placeholder="Buscar por nombre">
+            <button type="submit">Buscar</button>
+        </form>
 
-    <br>
-    <form th:action="@{/}" method="get">
-        <button type="submit">Recargar lista</button>
-    </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="ind : ${lista}">
+                    <td th:text="${ind.nombre}"></td>
+                    <td th:text="${ind.apellido}"></td>
+                    <td th:text="${ind.edad}"></td>
+                    <td th:text="${ind.correo}"></td>
+                    <td th:text="${ind.telefono}"></td>
+                    <td class="row-actions">
+                        <a th:href="@{/detalle(id=${ind.idIndividuo})}">Ver</a>
+                        <th:block th:if="${esAdmin}">
+                            | <a th:href="@{/editar(id=${ind.idIndividuo})}">Editar</a> 
+                            | <a th:href="@{/eliminar(id=${ind.idIndividuo})}" onclick="return confirm('¿Seguro que deseas eliminar?');">Eliminar</a>
+                        </th:block>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
